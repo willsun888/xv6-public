@@ -12,7 +12,7 @@
 #define BACK  5
 
 #define MAXARGS 10
-
+// cmd/execmd/redircmd/xxxcmd, 利用C语言实现多态，使用了设计模式中的策略模式
 struct cmd {
   int type;
 };

@@ -47,7 +47,7 @@ void
 freerange(void *vstart, void *vend)
 {
   char *p;
-  p = (char*)PGROUNDUP((uint)vstart);
+  p = (char*)PGROUNDUP((uint)vstart);  // PGROUNDUP是页大小的四舍五入处理，比如vstart=4097，返回8192；vstart=30，返回4096
   for(; p + PGSIZE <= (char*)vend; p += PGSIZE)
     kfree(p);
 }

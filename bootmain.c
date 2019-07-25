@@ -22,7 +22,7 @@ bootmain(void)
   void (*entry)(void);
   uchar* pa;
 
-  elf = (struct elfhdr*)0x10000;  // scratch space
+  elf = (struct elfhdr*)0x10000;  // scratch space // 内核代码的起始地址
 
   // Read 1st page off disk
   readseg((uchar*)elf, 4096, 0);
@@ -44,7 +44,7 @@ bootmain(void)
   // Call the entry point from the ELF header.
   // Does not return!
   entry = (void(*)(void))(elf->entry);
-  entry();
+  entry(); // entry.S的entry函数
 }
 
 void

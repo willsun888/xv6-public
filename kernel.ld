@@ -3,14 +3,14 @@
 
 OUTPUT_FORMAT("elf32-i386", "elf32-i386", "elf32-i386")
 OUTPUT_ARCH(i386)
-ENTRY(_start)
+ENTRY(_start) /* 内核的入口点_start定义在entry.S */
 
 SECTIONS
 {
 	/* Link the kernel at this address: "." means the current address */
         /* Must be equal to KERNLINK */
 	. = 0x80100000;
-
+    /* 内核代码存储起始地址是0x80101000(0x8010000+0x10000) */
 	.text : AT(0x100000) {
 		*(.text .stub .text.* .gnu.linkonce.t.*)
 	}
@@ -38,7 +38,7 @@ SECTIONS
 				   for this section */
 	}
 
-	/* Adjust the address for the data segment to the next page */
+	/* Adjust the address for the data segment to the next page */ /* 内核代码段保证4KB(1个Page的大小)对齐 */
 	. = ALIGN(0x1000);
 
 	/* Conventionally, Unix linkers provide pseudo-symbols

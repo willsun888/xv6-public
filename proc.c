@@ -96,7 +96,7 @@ found:
     p->state = UNUSED;
     return 0;
   }
-  sp = p->kstack + KSTACKSIZE;
+  sp = p->kstack + KSTACKSIZE;  // KSTACKSIZE：内核栈的空间，4096字节
 
   // Leave room for trap frame.
   sp -= sizeof *p->tf;
